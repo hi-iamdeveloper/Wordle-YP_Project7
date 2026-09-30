@@ -1,7 +1,5 @@
 package ru.yandex.practicum;
 
-import java.io.IOException;
-
 public class DictionaryLoadException extends Exception {
     public DictionaryLoadException() {
     }
