@@ -1,6 +1,7 @@
 package ru.yandex.practicum;
 
 import java.util.List;
+import java.util.Random;
 
 /*
 этот класс содержит в себе список слов List<String>
@@ -9,6 +10,28 @@ import java.util.List;
  */
 public class WordleDictionary {
 
-    private List<String> words;
+    private final List<String> words;
+    private final Random random = new Random();
+
+    public WordleDictionary(List<String> words) {
+        this.words = words;
+    }
+
+    String getRandomWord() {
+
+        if (words.isEmpty()) {
+            throw new IllegalStateException("Словарь пуст");
+        }
+        int index = random.nextInt(words.size());
+        return words.get(index);
+    }
+
+    public boolean contains(String word) {
+        return words.contains(word);
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
 
 }
