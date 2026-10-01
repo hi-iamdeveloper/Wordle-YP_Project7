@@ -16,6 +16,7 @@ import java.util.Locale;
 public class WordleDictionaryLoader {
 
     private final WordleDictionary words;
+    private static final int MAX_WORLD_LENGTH = 5;
 
     public WordleDictionaryLoader(String path) throws DictionaryLoadException {
         try {
@@ -24,8 +25,8 @@ public class WordleDictionaryLoader {
             for (String s : rawList) {
 
                 String trimmed = s.trim();
-                if (!trimmed.isEmpty()) {
-                    normalized.add(trimmed.replace('ё', 'е').toLowerCase(Locale.ROOT));
+                if (!trimmed.isEmpty() && trimmed.length() <= MAX_WORLD_LENGTH) {
+                    normalized.add(trimmed.toLowerCase(Locale.ROOT).replace('ё', 'е'));
                 }
             }
             if (normalized.isEmpty()) {

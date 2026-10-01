@@ -34,7 +34,8 @@ public class WordleGame {
         log.println("Игра создана. Загадано слово из " + answer.length() + " букв");
     }
 
-    public MoveResult makeMove(String word) throws WordNotFoundInDictionary {
+    public MoveResult makeMove(String word)
+            throws WordNotFoundInDictionary, WordAlreadyUsedException {
         if (word.length() != answer.length()) {
             throw new IllegalStateException(
                     "Длина слова не совпадает: " + word.length() + " vs " + answer.length());
@@ -46,7 +47,7 @@ public class WordleGame {
             throw new WordNotFoundInDictionary(word);
         }
         if (usedWords.contains(word)) {
-            throw new IllegalStateException("Слово уже использовалось: " + word);
+            throw new WordAlreadyUsedException(word);
         }
 
         usedWords.add(word);
